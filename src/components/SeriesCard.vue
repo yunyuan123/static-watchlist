@@ -3,6 +3,15 @@
 const props = defineProps({
     serie:Object,
 })
+//déclare les événements dispo pour l'enfant
+const emit = defineEmits(["onContinue"])
+
+
+const continueBtnHandler = ()=>{
+    emit('onContinue',props.serie.title)
+    console.log(props.serie.title)
+}
+
 
 
 
@@ -17,7 +26,7 @@ const props = defineProps({
               <div class="course-info">
                   <h6>ep: S{{serie.season < 10 ? '0'+ serie.season:serie.season }}E{{ serie.episode < 10 ?'0'+serie.episode:serie.episode }}</h6>
                   <h2>{{ serie.title }} </h2>
-                  <button class="btn" :style="{'background-color': serie.color}">Continue</button>
+                  <button @click='continueBtnHandler' class="btn" :style="{'background-color': serie.color}">Continue</button>
               </div>
           </div>
 </template>
